@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Start Page</title>
+        <style>
+           body                  { margin: 0; font-family: VictorMono Nerd Font Mono; font-size: 1em; overflow-y: auto; display: flex; flex-direction: column; min-height: 100vh; background-color: #333; color: white; }
+           main                  { flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 50px; }
+           header                { background-color: #222; top: 0; padding: 10px; text-align: center; width: 100%; position: fixed; z-index: 1000; }
+           #header-info          { /* Add any specific styles for header info here */ }
+           #background-video     { position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1; background-size: cover; }
+           #logo                 { position: fixed; top: 75px; right: 10px; max-width: 100px; }
+           #clock                { font-size: 5em; text-align: center; flex: 1; min-width: 250px; margin: 10px; }
+           .containers-wrapper   { display: flex; justify-content: center; width: 90%; max-width: 1200px; margin-bottom: 20px; flex-wrap: wrap; }
+           .container            { text-align: center; flex: 1; min-width: 250px; margin: 10px; }
+           .bookmarks            { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+           .bookmarks a          { padding: 8px 12px; background-color: rgba(254, 254, 254, 0.9); color: black; text-decoration: none; border-radius: 5px; white-space: nowrap; }
+           .search-container     { display: flex; justify-content: center; margin: 20px 0; flex-direction: column; align-items: center; }
+           .search-input-group   { display: flex; width: 80%; max-width: 1000px; align-items: center; }
+           .search-input         { flex-grow: 1; padding: 10px 5px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+           .search-input:focus   { outline: none; border-color: #007bff; box-shadow: 0 0 10px rgba(0, 123, 255, 0.25); }
+           .search-engine-select { padding: 10px 5px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; box-sizing: border-box; appearance: none; -webkit-appearance: none; margin-bottom: 0; }
+           .search-input:focus   { outline: none; border-color: #007bff; box-shadow: 0 0 10px rgba(0, 123, 255, 0.25); }
+           .search-engine-select { padding: 0 5px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; box-sizing: border-box; height: 40px; line-height: 40px; appearance: none; -webkit-appearance: none; margin-bottom: 0; }
+           .search-input:focus   { outline: none; border-color: #007bff; box-shadow: 0 0 10px rgba(0, 123, 255, 0.25); }
+           .search-engine-select { padding: 10px 5px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; box-sizing: border-box; height: 40px; line-height: 18px; appearance: none; -webkit-appearance: none; flex-shrink: 0; }
+           .search-input:focus   { outline: none; border-color: #007bff; box-shadow: 0 0 10px rgba(0, 123, 255, 0.25); }
+           .search-engine-select { padding: 10px 5px; font-size: 16px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; box-sizing: border-box; height: 100%; line-height: 18px; /* (40px height - 20px padding - 2px border) */ appearance: none; -webkit-appearance: none; margin-bottom: 0; }
+           body.fallback-background { background-image: url('/usr/share/wallpapers/Next/contents/images/1920x1080.png'); background-size: cover; background-attachment: fixed; }
+
+           @media (max-width: 768px) {
+               main { padding: 20px; }
+               #clock { font-size: 3em; }
+               .containers-wrapper { flex-direction: column; align-items: center; }
+               .container { min-width: unset; width: 90%; margin: 10px 0; }
+               .search-input-group { flex-direction: column; width: 90%; }
+               .search-engine-select { margin-right: 0; margin-bottom: 10px; width: 100%; }
+               .search-input { width: 100%; }
+               .bookmarks a { padding: 6px 10px; font-size: 0.9em; }
+               footer { position: relative; padding: 10px; }
+           }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div id="header-info"></div>
+        </header>
+        <video id="background-video" autoplay muted loop playsinline>
+              <source src="background.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+        
+        <img id="logo" src="logo.png" alt="Logo" />
+        <main>
+            <div class="clock" id="clock"></div>
+            <div class="container" id="date"></div>
+            <div class="search-container">
+                <div class="search-input-group">
+                    <select id="searchEngineSelect" class="search-engine-select"></select>
+                    <input type="text" id="unifiedSearch" class="search-input" placeholder="Search Google or paste image for image search" autofocus />
+                </div>
+            </div>
+            <div class="containers-wrapper">
+                <div class="container">
+                    <h3>Email & Productivity</h3>
+                    <div class="bookmarks" id="emailProductivity"></div>
+                </div>
+                <div class="container">
+                    <h3>Network & Admin</h3>
+                    <div class="bookmarks" id="networkAdmin"></div>
+                </div>
+                <div class="container">
+                    <h3>Tech & Dev</h3>
+                    <div class="bookmarks" id="techDev"></div>
+                </div>
+                <div class="container">
+                    <h3>News & Media</h3>
+                    <div class="bookmarks" id="newsMedia"></div>
+                </div>
+                <div class="container">
+                    <h3>Search & AI</h3>
+                    <div class="bookmarks" id="searchAI"></div>
+                </div>
+                <div class="container">
+                    <h3>Social & Communication</h3>
+                    <div class="bookmarks" id="socialCommunication"></div>
+                </div>
+                <div class="container">
+                    <h3>Entertainment</h3>
+                    <div class="bookmarks" id="entertainment"></div>
+                </div>
+            </div>
+        </main>
+        
+        <script>
+            
+
+            
+
+
+            function updateClock() {
+                const now = new Date();
+                const time = now.toLocaleTimeString("en-US", { hour12: false });
+                document.getElementById("clock").textContent = time;
+
+                const dateOptions = {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                };
+                const gregorianDate = now.toLocaleDateString(
+                    "en-US",
+                    dateOptions,
+                );
+                document.getElementById("date").textContent = gregorianDate;
+            }
+
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            const unifiedSearch = document.getElementById("unifiedSearch");
+            const searchEngineSelect = document.getElementById("searchEngineSelect");
+
+            const searchEngines = {
+                "Google": "https://www.google.com/search?udm=14&hl=en&ogbl&q=",
+                "Google Images": "https://www.google.com/search?tbm=isch&q=",
+                "DuckDuckGo": "https://duckduckgo.com/?q=",
+                "Bing": "https://www.bing.com/search?q=",
+                "Yahoo": "https://search.yahoo.com/search?p=",
+                "Baidu": "https://www.baidu.com/s?wd=",
+                "Yandex": "https://yandex.com/search/?text=",
+                "Ecosia": "https://www.ecosia.org/search?q=",
+                "Startpage": "https://www.startpage.com/do/search?query=",
+                "Brave Search": "https://search.brave.com/search?q=",
+                "Ask.com": "https://www.ask.com/web?q=",
+                "AOL Search": "https://search.aol.com/aol/search?q=",
+                "WolframAlpha": "https://www.wolframalpha.com/input?i=",
+                "Wikipedia": "https://en.wikipedia.org/wiki/Special:Search?search=",
+                "YouTube": "https://www.youtube.com/results?search_query=",
+                "Amazon": "https://www.amazon.com/s?k=",
+                "eBay": "https://www.ebay.com/sch/i.html?_nkw=",
+                "Reddit": "https://www.reddit.com/search/?q=",
+                "Stack Overflow": "https://stackoverflow.com/search?q=",
+                "GitHub": "https://github.com/search?q=",
+                "NPM": "https://www.npmjs.com/search?q=",
+                "MDN Web Docs": "https://developer.mozilla.org/en-US/search?q=",
+                "Arch Wiki": "https://wiki.archlinux.org/index.php?search=",
+                "AUR": "https://aur.archlinux.org/packages?K=",
+                "LAVteam": "https://lavteam.org/search?q=",
+                "dpreview": "https://www.dpreview.com/search?q=",
+                "Engadget": "https://www.engadget.com/search?query=",
+                "GSM Arena": "https://www.gsmarena.com/results.php3?sSearch=",
+                "Petromindo": "https://www.petromindo.com/search?q=",
+                "DI.FM": "https://www.di.fm/search?q=",
+                "LK21": "https://lk21.de/search?q=",
+                "Gudang21": "https://wpt.gudang21.top/search?q=",
+                "Pornhub": "https://www.pornhub.com/video/search?search=",
+                "AVtub": "https://avtub.pet/search?q=",
+            };
+
+            // Populate the search engine dropdown
+            for (const engineName in searchEngines) {
+                const option = document.createElement("option");
+                option.value = searchEngines[engineName];
+                option.textContent = engineName;
+                searchEngineSelect.appendChild(option);
+            }
+
+            unifiedSearch.addEventListener("keydown", (event) => {
+                if (event.key === "Enter") {
+                    const query = unifiedSearch.value;
+                    const selectedEngineUrl = searchEngineSelect.value;
+                    if (query) {
+                        window.location.href = `${selectedEngineUrl}${encodeURIComponent(query)}`;
+                    }
+                }
+            });
+
+            unifiedSearch.addEventListener("paste", (event) => {
+                const items = (event.clipboardData || event.originalEvent.clipboardData).items;
+                for (let i = 0; i < items.length; i++) {
+                    if (items[i].type.indexOf("image") !== -1) {
+                        window.open("https://lens.google.com/?pli=1", "_blank");
+                        event.preventDefault(); // Prevent default paste behavior
+                        break;
+                    }
+                }
+            });
+
+            const bookmarks = {
+                emailProductivity: [
+                    { name: "Outlook",          url: "https://outlook.office.com/mail/" },,
+                    { name: "Gmail 0",          url: "https://mail.google.com/mail/u/0/#inbox" },
+                    { name: "Gmail 1",          url: "https://mail.google.com/mail/u/1/#inbox" },
+                    { name: "Gmail 2",          url: "https://mail.google.com/mail/u/2/#inbox" },
+                ],
+                networkAdmin: [
+                    { name: "NAS",            url: "http://192.168.89.251:5000/" },
+                    
+                    { name: "Router 1",         url: "http://192.168.1.1/" },
+                    { name: "Router 2",         url: "http://192.168.2.1/" },
+                    { name: "Router 3",         url: "http://192.168.3.1/" },
+                    { name: "Router 11",        url: "http://192.168.11.1/" },
+                    { name: "Router 88",        url: "http://192.168.88.1/" },
+                    { name: "dnscheck",         url: "http://dnscheck.tools/" },
+                ],
+                techDev: [
+                    { name: "Archlinux",        url: "https://archlinux.org" },
+                    { name: "Archlinux - Wiki", url: "https://wiki.archlinux.org" },
+                    { name: "Archlinux - Aur",  url: "https://aur.archlinux.org" },
+                    { name: "Github",           url: "https://github.com/ariefra" },
+                    { name: "Stack Overflow",   url: "https://stackoverflow.com/search?q=" },
+                    { name: "NPM",              url: "https://www.npmjs.com/search?q=" },
+                    { name: "MDN Web Docs",     url: "https://developer.mozilla.org/en-US/search?q=" },
+                ],
+                newsMedia: [
+                    { name: "LAVteam",          url: "https://lavteam.org/" },
+                    { name: "Photography",      url: "https://dpreview.com" },
+                    { name: "Gadget",           url: "https://endgadget.com" },
+                    { name: "GSM Arena",        url: "https://gsmarena.com" },
+                    { name: "Petromindo",       url: "https://www.petromindo.com/job-gallery" },
+                ],
+                searchAI: [
+                    { name: "Google",           url: "https://google.com/" },
+                    { name: "Gemini",           url: "https://gemini.google.com/" },
+                    { name: "Google Trends",    url: "https://trends.google.co.id/trends/" },
+                    { name: "Google translate", url: "https://translate.google.com/" },
+                    { name: "ChatGPT",          url: "https://chat.openai.com/" },
+                    { name: "DuckDuckGo",       url: "https://duckduckgo.com/" },
+                    { name: "Startpage",        url: "https://www.startpage.com/" },
+                ],
+                socialCommunication: [
+                    { name: "WhatsApp",         url: "https://web.whatsapp.com/" },
+                    { name: "LinkedIn",         url: "https://www.linkedin.com/feed/" },
+                    { name: "Reddit",           url: "https://www.reddit.com/" },
+                ],
+                entertainment: [
+                    { name: "YouTube",          url: "https://www.youtube.com/" },
+                    { name: "TikTok",           url: "https://www.tiktok.com/" },
+                    { name: "DI.FM",            url: "https://www.di.fm/" },
+                    { name: "LK21",             url: "https://lk21.de" },
+                    { name: "G21",              url: "https://wpt.gudang21.top/" },
+                    
+                ],
+            };
+
+            // for (const group in bookmarks) {
+            //     const container = document.getElementById(group);
+            //     bookmarks[group].forEach((bookmark) => {
+            //         const link = document.createElement("a");
+            //         link.href = bookmark.url;
+            //         link.textContent = bookmark.name;
+            //         container.appendChild(link);
+            //     });
+            // }
+
+            for (const group in bookmarks) {
+                const container = document.getElementById(group);
+                bookmarks[group].forEach((bookmark) => {
+                    const link = document.createElement("a");
+                    link.href = bookmark.url;
+                    link.textContent = bookmark.name;
+                    link.target = "_blank"; // Add this line
+                    link.rel = "noopener noreferrer"; // Add this line
+                    container.appendChild(link);
+                });
+            }
+
+            document.getElementById("header-info").textContent =
+                "Platform: " +
+                navigator.platform +
+                " | User Agent: " +
+                navigator.userAgent;
+
+            
+        </script>
+    </body>
+</html>
