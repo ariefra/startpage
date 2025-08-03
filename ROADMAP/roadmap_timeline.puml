@@ -1,0 +1,54 @@
+@startuml
+!theme plain
+scale 1.5
+
+skinparam activity {
+  BorderColor #333333
+  BackgroundColor #EEEEEE
+  FontColor #333333
+  FontSize 12
+  ArrowColor #333333
+  ArrowFontColor #333333
+  ArrowFontSize 10
+}
+
+skinparam activityDiagram {
+  StartColor #333333
+  EndColor #333333
+  BarColor #333333
+}
+
+title Project Roadmap Timeline
+
+partition "Phase 1: Core Functionality" {
+  :Milestone 1.1: Basic HTML structure and CSS styling;
+  :Milestone 1.2: Functional search bar with configurable search engines;
+  :Milestone 1.3: Implement customizable links (add, edit, delete);
+  :Milestone 1.4: Local storage integration for user data persistence;
+  :Milestone 1.5: Dynamic background support (video/image);
+}
+
+partition "Phase 2: Enhancements and Refinements" {
+  :Milestone 2.1: Improved UI/UX for link management;
+  :Milestone 2.2: Advanced theming options (e.g., custom colors, fonts);
+  :Milestone 2.3: Performance optimizations (e.g., lazy loading, image optimization);
+  :Milestone 2.4: Accessibility improvements;
+  :Milestone 2.5: Basic error handling and user feedback mechanisms;
+}
+
+partition "Phase 3: Advanced Features" {
+  :Milestone 3.1: Widget system (e.g., weather, clock, RSS feed);
+  :Milestone 3.2: Cloud synchronization for settings across devices;
+  :Milestone 3.3: Offline mode enhancements;
+  :Milestone 3.4: Integration with popular browser extensions/APIs;
+  :Milestone 3.5: Community contributions and plugin architecture;
+}
+
+partition "Future Considerations" {
+  :Mobile Responsiveness;
+  :Internationalization;
+  :Security;
+  :Testing;
+}
+
+@enduml

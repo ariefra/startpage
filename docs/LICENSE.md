@@ -1,5 +1,7 @@
 # MIT License
 
+[https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
+
 Copyright (c) 2025 Arief Rachman
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
