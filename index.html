@@ -350,25 +350,39 @@
                 searchEngineSelect.appendChild(option);
             }
 
+            function performSearch(query) {
+                const selectedEngineUrl = searchEngineSelect.value;
+                if (query) {
+                    window.location.href = `${selectedEngineUrl}${encodeURIComponent(query)}`;
+                }
+            }
+
             unifiedSearch.addEventListener("keydown", (event) => {
                 if (event.key === "Enter") {
-                    const query = unifiedSearch.value;
-                    const selectedEngineUrl = searchEngineSelect.value;
-                    if (query) {
-                        window.location.href = `${selectedEngineUrl}${encodeURIComponent(query)}`;
-                    }
+                    performSearch(unifiedSearch.value);
                 }
             });
 
             unifiedSearch.addEventListener("paste", (event) => {
-                const items = (event.clipboardData || event.originalEvent.clipboardData).items;
+                const clipboardData = event.clipboardData || event.originalEvent.clipboardData;
+                const items = clipboardData.items;
+
+                let isImage = false;
                 for (let i = 0; i < items.length; i++) {
                     if (items[i].type.indexOf("image") !== -1) {
-                        window.open("https://lens.google.com/?pli=1", "_blank");
-                        event.preventDefault(); // Prevent default paste behavior
+                        isImage = true;
                         break;
                     }
                 }
+
+                if (isImage) {
+                    window.open("https://lens.google.com/?pli=1", "_blank");
+                } else {
+                    const pastedText = clipboardData.getData('text/plain');
+                    unifiedSearch.value = pastedText;
+                    performSearch(pastedText);
+                }
+                event.preventDefault(); // Prevent default paste behavior
             });
 
             const bookmarks = {
@@ -402,6 +416,7 @@
                     { name: "Photography",      url: "https://dpreview.com" },
                     { name: "Gadget",           url: "https://endgadget.com" },
                     { name: "GSM Arena",        url: "https://gsmarena.com" },
+                    { name: "EV Arena",         url: "https://arenaev.com" },
                     { name: "Petromindo",       url: "https://www.petromindo.com/job-gallery" },
                 ],
                 searchAI: [
@@ -423,6 +438,7 @@
                     { name: "TikTok",           url: "https://www.tiktok.com/" },
                     { name: "DI.FM",            url: "https://www.di.fm/" },
                     { name: "LK21",             url: "https://lk21.de" },
+                    { name: "MK21",             url: "https://moviekhhd.biz" },
                     { name: "G21",              url: "https://wpt.gudang21.top/" },
                     
                 ],
