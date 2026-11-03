@@ -37,8 +37,6 @@
             z-index: 1000;
         }
 
-
-
         #background-video {
             position: fixed;
             right: 0;
@@ -65,8 +63,6 @@
             min-width: 250px;
             margin: 10px;
         }
-
-
 
         .containers-wrapper {
             display: flex;
@@ -131,7 +127,7 @@
         }
 
         .search-engine-select {
-            padding: 10px 5px;
+            padding: 8px 5px;
             font-size: 16px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -140,45 +136,6 @@
             appearance: none;
             -webkit-appearance: none;
             margin-bottom: 0;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
-        }
-
-        .search-engine-select {
-            padding: 0 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-            box-sizing: border-box;
-            height: 40px;
-            line-height: 40px;
-            appearance: none;
-            -webkit-appearance: none;
-            margin-bottom: 0;
-        }
-
-        .search-input:focus {
-            outline: none;
-            border-color: #007bff;
-            box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
-        }
-
-        .search-engine-select {
-            padding: 10px 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-            box-sizing: border-box;
-            height: 40px;
-            line-height: 18px;
-            appearance: none;
-            -webkit-appearance: none;
             flex-shrink: 0;
         }
 
@@ -186,21 +143,6 @@
             outline: none;
             border-color: #007bff;
             box-shadow: 0 0 10px rgba(0, 123, 255, 0.25);
-        }
-
-        .search-engine-select {
-            padding: 10px 5px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-            box-sizing: border-box;
-            height: 100%;
-            line-height: 18px;
-            /* (40px height - 20px padding - 2px border) */
-            appearance: none;
-            -webkit-appearance: none;
-            margin-bottom: 0;
         }
 
         body.fallback-background {
@@ -217,8 +159,6 @@
             #clock {
                 font-size: 3em;
             }
-
-
 
             .containers-wrapper {
                 flex-direction: column;
@@ -343,7 +283,7 @@
         const searchEngineSelect = document.getElementById("searchEngineSelect");
 
         const searchEngines = {
-            "GoogleAI": "https://www.google.com/search?udm=50&aep=11&q=",
+            "GoogleAI": "https://www.google.com/search?udm=50&q=",
             "Google": "https://www.google.com/search?udm=14&hl=en&ogbl&q=",
             "Google Images": "https://www.google.com/search?tbm=isch&q=",
             "DuckDuckGo": "https://duckduckgo.com/?q=",
@@ -429,6 +369,7 @@
                 { name: "Gmail 0", url: "https://mail.google.com/mail/u/0/#inbox" },
                 { name: "Gmail 1", url: "https://mail.google.com/mail/u/1/#inbox" },
                 { name: "Gmail 2", url: "https://mail.google.com/mail/u/2/#inbox" },
+                { name: "ms Teams", url: "https://teams.cloud.microsoft" },
                 { name: "NotebookLM", url: "https://notebooklm.google.com/" },
             ],
             networkAdmin: [
@@ -440,6 +381,9 @@
                 { name: "Router 88", url: "http://192.168.88.1/" },
                 { name: "dnscheck", url: "http://dnscheck.tools/" },
                 { name: "DNSCrypt Stats", url: "http://127.0.0.1:8080/" },
+                { name: "nextdns analytics", url: "https://my.nextdns.io/3fa2f6/analytics" },
+                { name: "fast speedtest", url: "https://fast.com" },
+		{ name: "bufferbloat test", url: "https://www.waveform.com/tools/bufferbloat" },
             ],
             techDev: [
                 { name: "Archlinux", url: "https://archlinux.org" },
@@ -463,12 +407,14 @@
             searchAI: [
                 { name: "Google", url: "https://google.com/" },
                 { name: "Gemini", url: "https://gemini.google.com/" },
-                { name: "GoogleAI", url: "https://www.google.com/search?udm=50&aep=11&q=" },
+                { name: "GoogleAI", url: "https://www.google.com/search?udm=50"},
                 { name: "Google Trends", url: "https://trends.google.co.id/trends/" },
                 { name: "Google translate", url: "https://translate.google.com/" },
+                { name: "Google earth", url: "https://earth.google.com/web" },
                 { name: "ChatGPT", url: "https://chat.openai.com/" },
                 { name: "DuckDuckGo", url: "https://duckduckgo.com/" },
                 { name: "Startpage", url: "https://www.startpage.com/" },
+
             ],
             socialCommunication: [
                 { name: "WhatsApp", url: "https://web.whatsapp.com/" },
@@ -481,6 +427,8 @@
                 { name: "TikTok", url: "https://www.tiktok.com/" },
                 { name: "DI.FM", url: "https://www.di.fm/" },
                 { name: "LK21", url: "https://lk21.de" },
+                { name: "LK21mob", url: "https://lk21.mobile" },
+                { name: "Sandiwara", url: "https://sandiwara.net" },
                 { name: "MK21", url: "https://moviekhhd.biz" },
                 { name: "N168", url: "https://themoviedatabases.com/" },
                 { name: "Shopee", url: "https://shopee.co.id/" },
