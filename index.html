@@ -14,7 +14,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100vh;
-            background-color: #333;
+            background-color: black;
             color: white;
         }
 
@@ -47,6 +47,12 @@
             height: auto;
             z-index: -1;
             background-size: cover;
+            opacity: 0;
+            transition: opacity 10s ease-in;
+        }
+
+        #background-video.visible {
+            opacity: 1;
         }
 
         #logo {
@@ -193,27 +199,90 @@
 
             footer {
                 position: relative;
-                padding: 10px;
             }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .animate-slide-down { animation: slideDown 0.5s ease-out forwards; }
+            .animate-slide-up { animation: slideUp 0.5s ease-out forwards; }
+            .animate-slide-in-left { animation: slideInLeft 0.5s ease-out forwards; }
+            .animate-slide-in-right { animation: slideInRight 0.5s ease-out forwards; }
+            .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; opacity: 0; }
+
+            :root {
+                --delay-1: 100ms;
+                --delay-2: 200ms;
+                --delay-3: 300ms;
+                --delay-4: 400ms;
+                --delay-5: 500ms;
+                --delay-6: 600ms;
+                --delay-7: 700ms;
+                --delay-8: 800ms;
+            }
+            .delay-1 { animation-delay: var(--delay-1); }
+            .delay-2 { animation-delay: var(--delay-2); }
+            .delay-3 { animation-delay: var(--delay-3); }
+            .delay-4 { animation-delay: var(--delay-4); }
+            .delay-5 { animation-delay: var(--delay-5); }
+            .delay-6 { animation-delay: var(--delay-6); }
+            .delay-7 { animation-delay: var(--delay-7); }
+            .delay-8 { animation-delay: var(--delay-8); }
+
+            .bookmarks a:nth-child(1) { animation-delay: 100ms; }
+            .bookmarks a:nth-child(2) { animation-delay: 150ms; }
+            .bookmarks a:nth-child(3) { animation-delay: 200ms; }
+            .bookmarks a:nth-child(4) { animation-delay: 250ms; }
+            .bookmarks a:nth-child(5) { animation-delay: 300ms; }
+            .bookmarks a:nth-child(6) { animation-delay: 350ms; }
+            .bookmarks a:nth-child(7) { animation-delay: 400ms; }
+            .bookmarks a:nth-child(8) { animation-delay: 450ms; }
+            .bookmarks a:nth-child(9) { animation-delay: 500ms; }
+            .bookmarks a:nth-child(10) { animation-delay: 550ms; }
+            .bookmarks a:nth-child(11) { animation-delay: 600ms; }
+            .bookmarks a:nth-child(12) { animation-delay: 650ms; }
+            .bookmarks a:nth-child(13) { animation-delay: 700ms; }
+            .bookmarks a:nth-child(14) { animation-delay: 750ms; }
+            .bookmarks a:nth-child(15) { animation-delay: 800ms; }
         }
     </style>
 </head>
 
 <body>
-    <header>
+    <header class="animate-slide-down">
         <div id="header-info"></div>
     </header>
-    <video id="background-video" autoplay muted loop playsinline>
+    <video id="background-video" muted loop playsinline>
         <source src="background.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
-    <img id="logo" src="logo.png" alt="Logo" />
+    <img id="logo" src="logo.png" alt="Logo" class="animate-slide-in-right delay-1" />
     <main>
-        <div class="clock" id="clock"></div>
+        <div class="clock animate-slide-up delay-1" id="clock"></div>
 
-        <div class="container" id="date"></div>
-        <div class="search-container">
+        <div class="container animate-slide-up delay-2" id="date"></div>
+        <div class="search-container animate-slide-up delay-3">
             <div class="search-input-group">
                 <select id="searchEngineSelect" class="search-engine-select"></select>
                 <input type="text" id="unifiedSearch" class="search-input"
@@ -221,31 +290,31 @@
             </div>
         </div>
         <div class="containers-wrapper">
-            <div class="container">
+            <div class="container animate-slide-in-left delay-1">
                 <h3>Email & Productivity</h3>
                 <div class="bookmarks" id="emailProductivity"></div>
             </div>
-            <div class="container">
+            <div class="container animate-slide-in-right delay-2">
                 <h3>Network & Admin</h3>
                 <div class="bookmarks" id="networkAdmin"></div>
             </div>
-            <div class="container">
+            <div class="container animate-slide-in-left delay-3">
                 <h3>Tech & Dev</h3>
                 <div class="bookmarks" id="techDev"></div>
             </div>
-            <div class="container">
+            <div class="container animate-slide-in-right delay-4">
                 <h3>News & Media</h3>
                 <div class="bookmarks" id="newsMedia"></div>
             </div>
-            <div class="container">
+            <div class="container animate-slide-in-left delay-5">
                 <h3>Search & AI</h3>
                 <div class="bookmarks" id="searchAI"></div>
             </div>
-            <div class="container">
+            <div class="container animate-slide-in-right delay-6">
                 <h3>Social & Communication</h3>
                 <div class="bookmarks" id="socialCommunication"></div>
             </div>
-            <div class="container">
+            <div class="container animate-slide-in-left delay-7">
                 <h3>Entertainment</h3>
                 <div class="bookmarks" id="entertainment"></div>
             </div>
@@ -379,8 +448,10 @@
                 { name: "Router 3", url: "http://192.168.3.1/" },
                 { name: "Router 11", url: "http://192.168.11.1/" },
                 { name: "Router 88", url: "http://192.168.88.1/" },
+                { name: "9Router", url: "http://localhost:20128/dashboard" },
+                { name: "FreeLLM", url: "http://127.0.0.1:31415" },
                 { name: "dnscheck", url: "http://dnscheck.tools/" },
-                { name: "DNSCrypt Stats", url: "http://127.0.0.1:8080/" },
+                { name: "DNSCrypt Stats", url: "http://127.0.0.1:53535/" },
                 { name: "nextdns analytics", url: "https://my.nextdns.io/3fa2f6/analytics" },
                 { name: "fast speedtest", url: "https://fast.com" },
 		{ name: "bufferbloat test", url: "https://www.waveform.com/tools/bufferbloat" },
@@ -448,12 +519,14 @@
 
         for (const group in bookmarks) {
             const container = document.getElementById(group);
-            bookmarks[group].forEach((bookmark) => {
+            bookmarks[group].forEach((bookmark, i) => {
                 const link = document.createElement("a");
                 link.href = bookmark.url;
                 link.textContent = bookmark.name;
-                link.target = "_blank"; // Add this line
-                link.rel = "noopener noreferrer"; // Add this line
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+                link.className = "animate-fade-in";
+                link.style.animationDelay = `${100 + i * 50}ms`;
                 container.appendChild(link);
             });
         }
@@ -463,6 +536,12 @@
             navigator.platform +
             " | User Agent: " +
             navigator.userAgent;
+
+        setTimeout(() => {
+            const backgroundVideo = document.getElementById("background-video");
+            backgroundVideo.play();
+            backgroundVideo.classList.add("visible");
+        }, 2000);
 
 
 
